@@ -1,4 +1,4 @@
-# Use Node.js LTS
+# Use official Node image
 FROM node:18
 
 # Set working directory
@@ -8,17 +8,14 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# Copy everything into the container
+# Copy all backend files (including prisma folder!)
 COPY . .
 
-# Generate Prisma client
+# Generate the Prisma Client
 RUN npx prisma generate --schema=./prisma/schema.prisma
 
-# Optional: deploy any pending migrations
-# RUN npx prisma migrate deploy --schema=./prisma/schema.prisma
-
-# Expose backend port
+# Expose the port
 EXPOSE 4000
 
 # Start the backend
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
