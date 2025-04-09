@@ -32,7 +32,7 @@ export default function HomePage() {
   return (
     <main className="p-6">
       <SignedIn>
-        <h1 className="text-xl">You're signed in!</h1>
+        <h1 className="text-xl">You&apos;re signed in!</h1>
       </SignedIn>
       <SignedOut>
         <h1 className="text-xl mb-4">Welcome 👋</h1>
