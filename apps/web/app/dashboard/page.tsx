@@ -10,6 +10,8 @@ interface BackendUser {
   error?: string;
 }
 
+type BackendUserState = BackendUser | { error: string } | null;
+
 export default function DashboardPage() {
   const { user } = useUser();
   const { getToken } = useAuth();
