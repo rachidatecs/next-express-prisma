@@ -7,7 +7,6 @@ interface BackendUser {
   id: string;
   email: string;
   name?: string;
-  error?: string;
 }
 
 type BackendUserState = BackendUser | { error: string } | null;
@@ -15,7 +14,7 @@ type BackendUserState = BackendUser | { error: string } | null;
 export default function DashboardPage() {
   const { user } = useUser();
   const { getToken } = useAuth();
-  const [backendUser, setBackendUser] = useState<BackendUser | null>(null);
+  const [backendUser, setBackendUser] = useState<BackendUserState>(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -47,7 +46,7 @@ export default function DashboardPage() {
     <main className="p-6">
       <SignedIn>
         <h1 className="text-2xl font-bold mb-4">Welcome, {user?.fullName || 'User'}!</h1>
-        {backendUser?.error ? (
+        {backendUser && 'error' in backendUser ? (
           <p className="text-red-600">{backendUser.error}</p>
         ) : backendUser ? (
           <div className="text-gray-700">
