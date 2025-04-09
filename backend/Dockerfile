@@ -4,12 +4,14 @@ FROM node:18
 # Set working directory
 WORKDIR /app
 
+# Copy all backend files (including prisma) first
+COPY . .
+
 # Install dependencies
-COPY package*.json ./
 RUN npm install
 
-# Copy all backend files (including prisma folder!)
-COPY . .
+# For debugging: Confirm schema.prisma exists in the container
+RUN ls -la ./prisma
 
 # Generate the Prisma Client
 RUN npx prisma generate --schema=./prisma/schema.prisma
