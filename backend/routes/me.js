@@ -8,7 +8,7 @@ const { env } = require('process');
 const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: env.DATABASE_URL, // explicitly load from env
+      url: "postgresql://postgres:JbJJvEMVUGwqKbYfJlbOYwFQbakiKCuF@yamabiko.proxy.rlwy.net:37054/railway", // explicitly load from env
     },
   },
 });
