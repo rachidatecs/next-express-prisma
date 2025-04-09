@@ -14,7 +14,7 @@ RUN npm install
 RUN ls -la ./prisma
 
 # Generate the Prisma Client
-RUN npx prisma generate --schema=./prisma/schema.prisma
+RUN npx prisma generate --schema=./prisma/schema.prisma --output=node_modules/.prisma/client
 
 # Expose the port
 EXPOSE 4000
