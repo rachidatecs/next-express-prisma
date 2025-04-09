@@ -15,6 +15,7 @@ export default function DashboardPage() {
   const { user } = useUser();
   const { getToken } = useAuth();
   const [backendUser, setBackendUser] = useState<BackendUserState>(null);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -22,7 +23,7 @@ export default function DashboardPage() {
         const token = await getToken();
         console.log('Clerk token:', token);
 
-        const res = await fetch('http://localhost:4000/api/user', {
+        const res = await fetch(`${apiUrl}/api/user`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

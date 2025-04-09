@@ -7,11 +7,12 @@ export default function HomePage() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [message, setMessage] = useState('Hello from our app!');
   const [status, setStatus] = useState('');
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const sendSms = async () => {
     try {
       setStatus('Sending...');
-      const res = await fetch('http://localhost:4000/api/sms', {
+      const res = await fetch(`${apiUrl}/api/sms`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phoneNumber, message }),
