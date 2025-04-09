@@ -1,0 +1,25 @@
+{
+    "name": "next-express-prisma",
+    "private": true,
+    "workspaces": [
+        "apps/*",
+        "backend",
+        "shared"
+    ],
+    "scripts": {
+        "dev": "turbo run dev",
+        "build": "turbo run build",
+        "lint": "turbo run lint",
+        "postinstall": "prisma generate --schema=prisma/schema.prisma"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.9",
+        "prisma": "^6.6.0",
+        "turbo": "latest"
+    },
+    "dependencies": {
+        "@prisma/client": "^6.6.0",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.1"
+    }
+}
