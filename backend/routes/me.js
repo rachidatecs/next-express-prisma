@@ -3,15 +3,8 @@ const express = require('express');
 const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const { requireAuth } = require('../middleware/auth');
-const { env } = require('process');
 
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: process.env.DATABASE_URL, // explicitly load from env
-    },
-  },
-});
+const prisma = new PrismaClient();
 
 // GET /api/user — Get current authenticated user (auto-create if needed)
 router.get('/api/user', requireAuth, async (req, res) => {
