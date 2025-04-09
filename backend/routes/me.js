@@ -9,7 +9,6 @@ const prisma = new PrismaClient();
 // GET /api/user — Get current authenticated user (auto-create if needed)
 router.get('/api/user', requireAuth, async (req, res) => {
   try {
-    console.log('[Prisma] Using DATABASE_URL:', env.DATABASE_URL);
     const { userId, auth } = req;
     console.log('[API] Raw req.auth:', auth);
     console.log('[API] Clerk Auth Info:', auth);
