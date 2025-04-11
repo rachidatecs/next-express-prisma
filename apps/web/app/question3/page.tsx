@@ -47,7 +47,7 @@ export default function Question3Page() {
   return (
     <section className="p-6 max-w-xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Question 3 of 3</h1>
-      <p className="mb-4">Who wrote "To Kill a Mockingbird"?</p>
+      <p className="mb-4">Who wrote &quot;To Kill a Mockingbird&quot;?</p>
       <div className="space-y-2">
         {['Harper Lee', 'Mark Twain', 'Jane Austen'].map((option) => (
           <button
