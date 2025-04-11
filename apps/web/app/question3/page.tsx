@@ -32,10 +32,13 @@ export default function Question3Page() {
       value === correctAnswers.q3;
 
     if (allCorrect) {
-      fetch('/api/sms', {
+      fetch('https://next-express-prisma-production.up.railway.app/api/sms', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber: answers.phone }),
+        body: JSON.stringify({
+          phoneNumber: answers.phone,
+          message: '🎉 Congrats! You passed the quiz with all correct answers!',
+        }),
       })
         .then(() => alert('✅ All answers correct! SMS sent.'))
         .catch(() => alert('❌ SMS sending failed.'));
