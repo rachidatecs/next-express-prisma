@@ -2,6 +2,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
 import Link from 'next/link';
 import { SignedIn, SignedOut, UserButton, SignInButton } from '@clerk/nextjs';
+import { TestProvider } from './context/TestContext';
 
 export const metadata = {
   title: 'Fullstack App',
@@ -27,7 +28,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </SignedOut>
             </div>
           </nav>
-          <main>{children}</main>
+          <main>
+            <TestProvider>{children}</TestProvider>
+          </main>
         </body>
       </html>
     </ClerkProvider>

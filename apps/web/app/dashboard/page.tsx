@@ -50,7 +50,7 @@ export default function DashboardPage() {
         {backendUser && 'error' in backendUser ? (
           <p className="text-red-600">{backendUser.error}</p>
         ) : backendUser ? (
-          <div className="text-gray-700">
+          <div>
             <p><strong>Backend Email:</strong> {backendUser.email}</p>
             <p><strong>Backend Name:</strong> {backendUser.name}</p>
           </div>

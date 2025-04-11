@@ -1,70 +1,48 @@
 'use client';
 
-import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
+import { useTest } from './context/TestContext';
 import { useState } from 'react';
 
-export default function HomePage() {
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [message, setMessage] = useState('Hello from our app!');
-  const [status, setStatus] = useState('');
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+export default function Page1() {
+  const { answers, setAnswers } = useTest();
+  const [localPhone, setLocalPhone] = useState(answers.phone || '');
+  const [answer, setAnswer] = useState('');
+  const router = useRouter();
 
-  const sendSms = async () => {
-    try {
-      setStatus('Sending...');
-      const res = await fetch(`${apiUrl}/api/sms`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber, message }),
-      });
-
-      const data = await res.json();
-      if (res.ok) {
-        setStatus('✅ SMS sent successfully!');
-      } else {
-        setStatus(`❌ Failed to send SMS: ${data.error}`);
-      }
-    } catch (err) {
-      console.error('SMS error:', err);
-      setStatus('❌ Error sending SMS');
-    }
+  const handleSubmit = () => {
+    setAnswers(prev => ({ ...prev, phone: localPhone, q1: answer }));
+    router.push('/question2');
   };
 
   return (
-    <main className="p-6">
-      <SignedIn>
-        <h1 className="text-xl">You&apos;re signed in!</h1>
-      </SignedIn>
-      <SignedOut>
-        <h1 className="text-xl mb-4">Welcome 👋</h1>
-        <SignInButton />
-      </SignedOut>
+    <section className="p-6 max-w-xl mx-auto">
+      <h1 className="text-xl font-bold mb-4">Question 1 of 3</h1>
 
-      <h2 className="text-2xl font-bold mb-4">Send a Quick SMS</h2>
-
+      <p className="mb-2">Cell: <em>(We'll text you a voucher if you win. We don't store or share these numbers.)</em></p>
       <input
         type="tel"
-        placeholder="Enter phone number"
-        value={phoneNumber}
-        onChange={(e) => setPhoneNumber(e.target.value)}
-        className="border p-2 w-full mb-3 rounded"
+        name="telephone-number"
+        placeholder="Phone number"
+        value={localPhone}
+        onChange={(e) => setLocalPhone(e.target.value)}
+        className="border p-2 mb-4 w-full rounded"
       />
 
-      <textarea
-        placeholder="Your message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        className="border p-2 w-full mb-3 rounded h-24"
-      />
+      <p className="mb-2">What is 2 + 2?</p>
+      <select value={answer} onChange={(e) => setAnswer(e.target.value)} className="border p-2 rounded w-full mb-4">
+        <option value="">Select an answer</option>
+        <option value="3">3</option>
+        <option value="4">4</option> {/* ✅ correct */}
+        <option value="5">5</option>
+      </select>
 
       <button
-        onClick={sendSms}
-        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full"
+        onClick={handleSubmit}
+        className="bg-violet-700 text-white px-6 py-2 rounded"
       >
-        Send SMS
+        Next
       </button>
-
-      {status && <p className="mt-4 text-sm text-gray-700">{status}</p>}
-    </main>
+    </section>
   );
 }
