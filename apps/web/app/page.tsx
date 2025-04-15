@@ -37,7 +37,7 @@ export default function Page1() {
           onChange={(e) => setConsent(e.target.checked)}
           className="mr-2"
         />
-        By checking this box, you consent to receiving marketing messages pertinent to this trivia quiz
+        By checking this box, I agree to receive marketing messages related to this trivia experience.
       </label>
 
       <p className="mb-2">What is 2 + 2?</p>
