@@ -7,11 +7,12 @@ import { useState } from 'react';
 export default function Page1() {
   const { answers, setAnswers } = useTest();
   const [localPhone, setLocalPhone] = useState(answers.phone || '');
+  const [consent, setConsent] = useState(false);
   const [answer, setAnswer] = useState('');
   const router = useRouter();
 
   const handleSubmit = () => {
-    setAnswers(prev => ({ ...prev, phone: localPhone, q1: answer }));
+    setAnswers(prev => ({ ...prev, phone: localPhone, q1: answer, consent }));
     router.push('/question2');
   };
 
@@ -28,6 +29,16 @@ export default function Page1() {
         onChange={(e) => setLocalPhone(e.target.value)}
         className="border p-2 mb-4 w-full rounded"
       />
+
+      <label className="block mt-4">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          className="mr-2"
+        />
+        By checking this box, you consent to receiving marketing messages pertinent to this trivia quiz
+      </label>
 
       <p className="mb-2">What is 2 + 2?</p>
       <select value={answer} onChange={(e) => setAnswer(e.target.value)} className="border p-2 rounded w-full mb-4">

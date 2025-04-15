@@ -31,6 +31,11 @@ export default function Question3Page() {
       answers?.q2 === correctAnswers.q2 &&
       value === correctAnswers.q3;
 
+    if (!answers?.consent) {
+      alert('☝️ Please consent to receive marketing messages to receive the quiz result via SMS.');
+      return;
+    }
+
     if (allCorrect) {
       fetch('https://next-express-prisma-production.up.railway.app/api/sms', {
         method: 'POST',

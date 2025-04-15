@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Answers = {
   phone: string;
+  consent?: boolean;
   q1?: string;
   q2?: string;
   q3?: string;
