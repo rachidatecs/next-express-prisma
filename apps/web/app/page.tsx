@@ -20,7 +20,7 @@ export default function Page1() {
     <section className="p-6 max-w-xl mx-auto">
       <h1 className="text-xl font-bold mb-4">Question 1 of 3</h1>
 
-      <p className="mb-2">Cell: <em>(We&apos;ll text you a voucher if you win. We don&apos;t store or share these numbers.)</em></p>
+      <p className="mb-1">Cell: <em>(We&apos;ll text you a voucher if you win. We don&apos;t store or share these numbers.)</em></p>
       <input
         type="tel"
         name="telephone-number"
@@ -30,7 +30,7 @@ export default function Page1() {
         className="border p-2 mb-4 w-full rounded"
       />
 
-      <label className="block mt-4">
+      <label className="block mb-2">
         <input
           type="checkbox"
           checked={consent}
