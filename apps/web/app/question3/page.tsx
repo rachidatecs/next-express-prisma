@@ -50,6 +50,16 @@ export default function Question3Page() {
     } else {
       alert('❌ Some answers are incorrect. Try again.');
     }
+
+    // This only works while the browser is open and active (not true background push).
+    // For persistent web push notifications (like real push to a device even when tab is closed),
+    // you'd need a Service Worker + Push API + VAPID keys, which is a bit more setup.
+    if (Notification.permission === 'granted') {
+      new Notification('🎉 Congrats!', {
+        body: 'All answers correct! Thanks for playing.',
+        //icon: '/icon.png', // optional
+      });
+    }
   };
 
   return (

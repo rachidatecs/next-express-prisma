@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useTest } from './context/TestContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Page1() {
   const { answers, setAnswers } = useTest();
@@ -15,6 +15,12 @@ export default function Page1() {
     setAnswers(prev => ({ ...prev, phone: localPhone, q1: answer, consent }));
     router.push('/question2');
   };
+
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission !== 'granted') {
+      Notification.requestPermission();
+    }
+  }, []);
 
   return (
     <section className="p-6 max-w-xl mx-auto">
