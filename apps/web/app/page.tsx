@@ -30,7 +30,7 @@ export default function Page1() {
         className="border p-2 mb-4 w-full rounded"
       />
 
-      <label className="block mb-2">
+      <label className="block mb-4">
         <input
           type="checkbox"
           checked={consent}
